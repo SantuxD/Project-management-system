@@ -18,6 +18,9 @@ app.use(
   })
 );
 
+const healthCheckRouter = require("./routes/healthcheck.js");
+app.use("/api/v1/healthcheck", healthCheckRouter);
+
 app.get("/", (req, res) => {
   res.send("Welcome to the Project Management System API");
 });
@@ -29,7 +32,7 @@ connectDB()
 
   .catch((err) => {
     console.error("Failed to connect to the database:", err.message);
-    process.exit(1); // Exit the process with failure
+    process.exit(1);
   });
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
